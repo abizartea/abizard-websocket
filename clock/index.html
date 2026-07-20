@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>ABIZARD Clock Overlay</title>
+
+<style>
+
+body{
+    margin:0;
+    background:transparent;
+    color:white;
+    font-family:Segoe UI,sans-serif;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+
+/* CUACA */
+
+#weather{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:15px;
+}
+
+
+#weatherIcon{
+    font-size:40px;
+}
+
+
+#location{
+    font-size:18px;
+}
+
+
+#temperature{
+    font-size:18px;
+}
+
+
+
+/* TANGGAL */
+
+#tanggal{
+    font-size:20px;
+    margin-bottom:20px;
+}
+
+
+
+/* JAM */
+
+#jam{
+    display:flex;
+    gap:15px;
+}
+
+
+#jam span{
+
+    width:100px;
+    height:90px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    font-size:3rem;
+    font-weight:bold;
+
+    box-shadow:
+    0 0 15px rgba(255,255,255,.3);
+
+}
+
+
+#jam span:nth-child(1){
+    background:#b30000;
+}
+
+
+#jam span:nth-child(2){
+    background:#f3a622;
+}
+
+
+#jam span:nth-child(3){
+    background:#1e8c1e;
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+
+<!-- CUACA -->
+
+<div id="weather">
+
+<div id="weatherIcon">
+☀️
+</div>
+
+
+<div>
+
+<div id="location">
+Mengambil lokasi...
+</div>
+
+
+<div id="temperature">
+--°C
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+<!-- TANGGAL -->
+
+<div id="tanggal"></div>
+
+
+
+
+<!-- JAM -->
+
+<div id="jam"></div>
+
+
+
+
+
+<script>
+
+
+// JAM DIGITAL
+
+function updateClock(){
+
+let d=new Date();
+
+
+
+jam.innerHTML=`
+
+<span>${String(d.getHours()).padStart(2,"0")}</span>
+
+<span>${String(d.getMinutes()).padStart(2,"0")}</span>
+
+<span>${String(d.getSeconds()).padStart(2,"0")}</span>
+
+`;
+
+
+
+let hari=[
+"Minggu",
+"Senin",
+"Selasa",
+"Rabu",
+"Kamis",
+"Jumat",
+"Sabtu"
+];
+
+
+let bulan=[
+"Januari",
+"Februari",
+"Maret",
+"April",
+"Mei",
+"Juni",
+"Juli",
+"Agustus",
+"September",
+"Oktober",
+"November",
+"Desember"
+];
+
+
+
+tanggal.innerHTML =
+`${hari[d.getDay()]}, ${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
+
+
+}
+
+
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+
+
+
+
+
+// CUACA + LOKASI
+
+async function loadWeather(){
+
+
+if(!navigator.geolocation){
+
+location.innerHTML="GPS tidak tersedia";
+
+return;
+
+}
+
+
+
+navigator.geolocation.getCurrentPosition(async(pos)=>{
+
+
+let lat=pos.coords.latitude;
+
+let lon=pos.coords.longitude;
+
+
+
+// suhu
+
+let data=await fetch(
+
+`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code`
+
+).then(r=>r.json());
+
+
+
+temperature.innerHTML =
+data.current.temperature_2m+"°C";
+
+
+
+
+
+// nama lokasi
+
+try{
+
+
+let geo=await fetch(
+
+`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`
+
+).then(r=>r.json());
+
+
+
+location.innerHTML =
+
+geo.address.city ||
+
+geo.address.town ||
+
+geo.address.village ||
+
+geo.address.county ||
+
+"Indonesia";
+
+
+
+}catch{
+
+
+location.innerHTML="Indonesia";
+
+
+}
+
+
+
+
+
+
+// ikon cuaca
+
+
+let code=data.current.weather_code;
+
+
+let icon="☀️";
+
+
+if(code>=1 && code<=3)
+icon="⛅";
+
+
+else if(code>=45 && code<=48)
+icon="🌫️";
+
+
+else if(code>=51 && code<=67)
+icon="🌧️";
+
+
+else if(code>=95)
+icon="⛈️";
+
+
+
+weatherIcon.innerHTML=icon;
+
+
+
+});
+
+
+}
+
+
+
+loadWeather();
+
+setInterval(loadWeather,600000);
+
+
+
+</script>
+
+
+</body>
+</html>

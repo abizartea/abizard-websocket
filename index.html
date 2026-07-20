@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ABIZARD WIDGETS </title>
+
+<meta name="theme-color" content="#00e5ff">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- Background -->
+<div id="particles"></div>
+
+<!-- Header -->
+<header>
+
+    <div class="logo">
+
+        <h1>ABIZARD WIDGETS</h1>
+
+        <p>Developer Edition</p>
+
+    </div>
+
+</header>
+
+<!-- Navigation -->
+<nav>
+
+    <button onclick="showPage('home')">
+        🏠 Home
+    </button>
+
+    <button onclick="showPage('widgets')">
+        🧩 Widgets
+    </button>
+
+    <button onclick="showPage('about')">
+        ℹ About
+    </button>
+
+</nav>
+
+<!-- Main -->
+<main>
+
+    <!-- HOME -->
+   <section id="home" class="page active">
+
+<div class="hero">
+
+<h2>WELCOME TO<br>ABIZARD WIDGETS</h2>
+
+<p class="subtitle">
+
+Professional Streaming Widgets
+
+</p>
+
+<p class="desc">
+
+Bangun overlay streaming modern untuk OBS Studio,
+PRISM Live, Browser Source, dan berbagai platform streaming.
+
+</p>
+
+<button class="exploreBtn" onclick="showPage('widgets')">
+
+🚀 EXPLORE WIDGETS
+
+</button>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="icon">🕒</div>
+
+<h3>Clock Widgets</h3>
+
+<p>
+
+Digital Clock<br>
+Cyber Clock<br>
+Glass Clock<br>
+Flip Clock
+
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🎵</div>
+
+<h3>Music Widgets</h3>
+
+<p>
+
+Now Playing<br>
+Visualizer<br>
+Lyrics
+
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon">📺</div>
+
+<h3>Streaming</h3>
+
+<p>
+
+Overlay<br>
+Browser Source<br>
+OBS Ready
+
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon">⚙</div>
+
+<h3>Status</h3>
+
+<p>
+
+Developer Edition<br>
+
+Version 2.0
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+    <!-- WIDGETS -->
+<section id="widgets" class="page">
+
+<div class="hero">
+
+<h2>WIDGET STORE</h2>
+
+<p class="desc">
+
+Pilih kategori widget yang ingin digunakan.
+
+</p>
+
+</div>
+
+<div class="grid">
+
+<div class="card" onclick="showPage('clock')">
+
+<div class="icon">🕒</div>
+
+<h3>Clock</h3>
+
+<p>
+
+Jam Digital, Flip Clock,
+Glass Clock, Cyber Clock
+dan lainnya.
+
+</p>
+
+</div>
+
+<div class="card" onclick="showPage('music')">
+
+<div class="icon">🎵</div>
+
+<h3>Music</h3>
+
+<p>
+
+Now Playing,
+Visualizer,
+Lyrics Widget.
+
+</p>
+
+</div>
+
+<div class="card" onclick="showPage('overlay')">
+
+<div class="icon">📺</div>
+
+<h3>Overlay</h3>
+
+<p>
+
+Streaming Overlay,
+Camera Frame,
+Alert Box.
+
+</p>
+
+</div>
+
+<div class="card" onclick="showPage('calendar')">
+
+<div class="icon">📅</div>
+
+<h3>Calendar</h3>
+
+<p>
+
+Kalender Digital,
+Agenda,
+Countdown.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="clock" class="page">
+
+<div class="hero">
+
+<h2>🕒 CLOCK COLLECTION</h2>
+
+<p class="desc">
+Pilih widget jam yang ingin digunakan.
+</p>
+
+</div>
+
+<div class="grid">
+
+<!-- Digital Clock -->
+<div class="card" onclick="openWidget('clock/index.html')">
+
+    <div class="icon">🕒</div>
+
+    <h3>Digital Clock</h3>
+
+    <small>Version 1.0 • ⭐ 5.0</small>
+
+    <p>
+        Jam digital futuristik untuk OBS Studio,
+        PRISM Live dan Browser Source.
+    </p>
+
+    <button class="exploreBtn"
+        onclick="event.stopPropagation(); copyURL('clock/index.html')">
+        COPY URL
+    </button>
+
+</div>
+
+<!-- Cyber Clock -->
+<div class="card" onclick="openWidget('cyber-clock/index.html')">
+
+    <div class="icon">⚡</div>
+
+    <h3>Cyber Clock</h3>
+
+    <small>Version 1.0 • ⭐ 5.0</small>
+
+    <p>
+        Jam HUD futuristik dengan efek cyber neon.
+    </p>
+
+    <button class="exploreBtn"
+        onclick="event.stopPropagation(); copyURL('cyber-clock/index.html')">
+        COPY URL
+    </button>
+
+</div>
+
+<!-- Glass Clock -->
+<div class="card" onclick="openWidget('glass-clock/index.html')">
+
+    <div class="icon">🔮</div>
+
+    <h3>Glass Clock</h3>
+
+    <small>Version 1.0 • ⭐ 5.0</small>
+
+    <p>
+        Glass UI Clock dengan tampilan modern.
+    </p>
+
+    <button class="exploreBtn"
+        onclick="event.stopPropagation(); copyURL('glass-clock/index.html')">
+        COPY URL
+    </button>
+
+</div>
+
+<!-- Flip Clock -->
+<div class="card" onclick="openWidget('flip-clock/index.html')">
+
+    <div class="icon">⏱</div>
+
+    <h3>Flip Clock</h3>
+
+    <small>Version 1.0 • ⭐ 5.0</small>
+
+    <p>
+        Jam digital dengan animasi Flip.
+    </p>
+
+    <button class="exploreBtn"
+        onclick="event.stopPropagation(); copyURL('flip-clock/index.html')">
+        COPY URL
+    </button>
+
+</div>
+
+<!-- RVTIK Clock -->
+<div class="card" onclick="openWidget('RVTIK-WIDGET/index.html')">
+
+    <div class="icon">🌤</div>
+
+    <h3>RVTIK Clock</h3>
+
+    <small>Version 1.0 • ⭐ 5.0</small>
+
+    <p>
+        Jam, cuaca, tanggal dan lokasi.
+    </p>
+
+    <button class="exploreBtn"
+        onclick="event.stopPropagation(); copyURL('RVTIK-WIDGET/index.html')">
+        COPY URL
+    </button>
+
+</div>
+
+</div>
+
+<div style="text-align:center;margin-top:30px;">
+
+<button class="exploreBtn"
+onclick="showPage('widgets')">
+
+⬅ Kembali
+
+</button>
+
+</div>
+
+</section>
+<section id="music" class="page">
+
+<div class="hero">
+
+<h2>🎵 MUSIC WIDGETS</h2>
+
+<p class="desc">
+ABIZARD Music Collection
+</p>
+
+</div>
+
+<div class="grid">
+
+<!-- ABIZARD MACHINE -->
+<div class="card" onclick="openWidget('abizard-machine/index.html')">
+
+<div class="icon">🎛️</div>
+
+<h3>ABIZARD MACHINE</h3>
+
+<p>
+
+Mesin utama<br>
+Music Player<br>
+Load Overlay URL
+
+</p>
+
+<button class="exploreBtn">
+
+OPEN
+
+</button>
+
+</div>
+
+<!-- OVERLAY -->
+<div class="card" onclick="showPage('overlay')">
+
+<div class="icon">📺</div>
+
+<h3>OVERLAY URL</h3>
+
+<p>
+
+Music Overlay<br>
+Visualizer<br>
+Browser Source
+
+</p>
+
+<button class="exploreBtn">
+
+OPEN
+
+</button>
+
+</div>
+
+</div>
+
+<button class="exploreBtn"
+onclick="showPage('widgets')">
+
+⬅ Kembali
+
+</button>
+
+
+</section>
+<section id="overlay" class="page">
+
+<div class="hero">
+
+<h2>📺 OVERLAY URL</h2>
+
+<p class="desc">
+Pilih overlay yang akan digunakan di ABIZARD MACHINE.
+</p>
+
+</div>
+
+<div class="grid">
+<div class="card" onclick="openWidget('abizard-machine/OVERLEY/OVERLAY%201/index.html')">
+
+<div class="icon">🎵</div>
+
+<h3>OVERLAY 1</h3>
+
+<p>
+Now Playing<br>
+Visualizer
+</p>
+<button class="exploreBtn"
+onclick="event.stopPropagation(); copyURL('abizard-machine/OVERLEY/OVERLAY%201/index.html')">
+
+COPY URL
+
+</button>
+</div>
+<div class="card" onclick="openWidget('abizard-machine/OVERLEY/OVERLAY%202/index.html')">
+
+<div class="icon">⚡</div>
+
+<h3>OVERLAY 2</h3>
+
+<p>
+Cyber Music Player<br>
+Now Playing
+</p>
+
+<button class="exploreBtn"
+onclick="event.stopPropagation(); copyURL('abizard-machine/OVERLEY/OVERLAY%202/index.html')">
+
+COPY URL
+
+</button>
+
+</div>
+<div class="card">
+
+<div class="icon">🕒</div>
+
+<h3>Clock Overlay</h3>
+
+<p>
+Digital Clock<br>
+Cyber Clock
+</p>
+
+<button class="exploreBtn">
+COPY URL
+</button>
+
+</div>
+
+</div>
+
+<div style="text-align:center;margin-top:30px;">
+
+<button class="exploreBtn"
+onclick="showPage('widgets')">
+
+⬅ Kembali
+
+</button>
+
+</div>
+
+</section>
+
+<section id="calendar" class="page">
+
+<h2>Calendar Widgets</h2>
+
+<p>
+
+Coming Soon...
+
+</p>
+
+<button class="exploreBtn"
+onclick="showPage('widgets')">
+
+⬅ Kembali
+
+</button>
+
+</section>
+<!-- ABOUT -->
+<section id="about" class="page">
+
+    <h2>About</h2>
+
+    <div class="card">
+
+        <p>
+            ABIZARD WIDGETS adalah kumpulan widget modern
+            berbasis HTML, CSS, dan JavaScript untuk
+            OBS Studio, PRISM Live, Browser Source,
+            dan kebutuhan live streaming.
+        </p>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+
+    © 2026 ABIZARD STUDIO
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

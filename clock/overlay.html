@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>ABIZARD Clock Overlay</title>
+
+<style>
+
+body{
+    margin:0;
+    background:transparent;
+    color:white;
+    font-family:Segoe UI,sans-serif;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+
+/* PROFIL LIVE */
+
+#profileBox{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+
+#profileImg{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+
+#profileName{
+    font-size:20px;
+    font-weight:bold;
+    letter-spacing:2px;
+    animation:neonColor 4s infinite;
+}
+
+
+@keyframes neonColor{
+
+0%{
+color:#ff0000;
+text-shadow:0 0 20px #ff0000;
+}
+
+25%{
+color:#ff9900;
+text-shadow:0 0 20px #ff9900;
+}
+
+50%{
+color:#00ff00;
+text-shadow:0 0 20px #00ff00;
+}
+
+75%{
+color:#00ffff;
+text-shadow:0 0 20px #00ffff;
+}
+
+100%{
+color:#ff00ff;
+text-shadow:0 0 20px #ff00ff;
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+
+<!-- PROFIL LIVE -->
+
+<div id="profileBox">
+
+<img id="profileImg"
+src="https://via.placeholder.com/100">
+
+
+<div id="profileName">
+ABIZARD
+</div>
+
+</div>
+
+
+
+<!-- CUACA -->
+
+<div id="weather">
+
+<div id="weatherIcon">
+☀️
+</div>
+
+
+<div>
+
+<div id="location">
+Lokasi
+</div>
+
+
+<div id="temperature">
+--°C
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- TANGGAL -->
+
+<div id="tanggal"></div>
+
+
+
+<!-- JAM -->
+
+<div id="jam"></div>
+
+
+
+<script>
+
+
+// LOAD FOTO + NAMA DARI EDITOR
+
+window.onload=function(){
+
+
+let nama =
+localStorage.getItem("profileName");
+
+
+let foto =
+localStorage.getItem("profileImg");
+
+
+
+if(nama){
+
+profileName.innerHTML=nama;
+
+}
+
+
+
+if(foto){
+
+profileImg.src=foto;
+
+}
+
+
+};
+
+
+
+
+
+// JAM
+
+function updateClock(){
+
+
+let d=new Date();
+
+
+
+jam.innerHTML=`
+
+<span>${String(d.getHours()).padStart(2,"0")}</span>
+<span>${String(d.getMinutes()).padStart(2,"0")}</span>
+<span>${String(d.getSeconds()).padStart(2,"0")}</span>
+
+`;
+
+
+
+let hari=[
+"Minggu","Senin","Selasa",
+"Rabu","Kamis","Jumat","Sabtu"
+];
+
+
+let bulan=[
+"Januari","Februari","Maret",
+"April","Mei","Juni",
+"Juli","Agustus","September",
+"Oktober","November","Desember"
+];
+
+
+tanggal.innerHTML =
+`${hari[d.getDay()]}, ${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
+
+
+}
+
+
+
+setInterval(updateClock,1000);
+updateClock();
+
+
+
+
+
+// CUACA
+
+async function loadWeather(){
+
+
+if(!navigator.geolocation)
+return;
+
+
+
+navigator.geolocation.getCurrentPosition(async(pos)=>{
+
+
+let lat=pos.coords.latitude;
+
+let lon=pos.coords.longitude;
+
+
+
+let data=await fetch(
+
+`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code`
+
+).then(r=>r.json());
+
+
+
+temperature.innerHTML=
+data.current.temperature_2m+"°C";
+
+
+
+let code=data.current.weather_code;
+
+let icon="☀️";
+
+
+if(code>=1 && code<=3)
+icon="⛅";
+
+else if(code>=45 && code<=48)
+icon="🌫️";
+
+else if(code>=51 && code<=67)
+icon="🌧️";
+
+else if(code>=95)
+icon="⛈️";
+
+
+weatherIcon.innerHTML=icon;
+
+
+});
+
+
+}
+
+
+loadWeather();
+
+setInterval(loadWeather,600000);
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+
+*{
+    box-sizing:border-box;
+}
+
+
+body{
+
+    margin:0;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:transparent;
+
+    font-family:'Orbitron',sans-serif;
+
+}
+
+
+
+.glass-box{
+
+    width:380px;
+
+    padding:30px;
+
+    text-align:center;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,0.35);
+
+    box-shadow:
+
+    0 0 30px rgba(0,255,255,0.4);
+
+}
+
+
+
+.brand{
+
+    color:#00ffff;
+
+    font-size:18px;
+
+    letter-spacing:4px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+#time{
+
+    font-size:65px;
+
+    color:white;
+
+    letter-spacing:5px;
+
+    text-shadow:
+
+    0 0 10px #00ffff;
+
+}
+
+
+
+#date{
+
+    margin-top:15px;
+
+    color:#ffffff;
+
+    font-size:17px;
+
+}
+
+
+
+.tag{
+
+    margin-top:20px;
+
+    color:#00ffff;
+
+    font-size:13px;
+
+    letter-spacing:3px;
+
+}
